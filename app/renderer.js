@@ -13,7 +13,7 @@ import {
 } from './graph-core.js';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
-const DEFAULT_VIEW = { x: 0, y: 0, scale: 1, selectedId: null, search: '', activeKinds: new Set(), activeGroups: new Set(), activeEdgeKinds: new Set(), focusIds: null, positions: {}, labelEdges: false, layoutSpacing: 1, layoutMode: 'layered', nodeScale: 1, labelScale: 1, edgeOpacity: 0.85, inferredOpacity: 0.70, dottedOpacity: 0.85, solidWidth: 2.2, dashedWidth: 2.2, areaWidth: 1.5, areaNameSize: 23, edgeLabelMode: 'off', backgroundColor: '#0c1220', animationEnabled: false, animationSpeed: 1, nodeLimit: 650, isolationMode: 'all', showInferred: true, linkDistance: 180, repulsion: 1 };
+const DEFAULT_VIEW = { x: 0, y: 0, scale: 1, selectedId: null, search: '', activeKinds: new Set(), activeGroups: new Set(), activeEdgeKinds: new Set(), focusIds: null, positions: {}, labelEdges: false, layoutSpacing: 1, layoutMode: 'layered', nodeScale: 1, labelScale: 1, edgeOpacity: 0.85, inferredOpacity: 0.70, dottedOpacity: 0.85, solidWidth: 2.2, dashedWidth: 2.2, areaWidth: 1.5, areaNameSize: 23, edgeLabelMode: 'off', backgroundColor: '#18191b', animationEnabled: false, animationSpeed: 1, nodeLimit: 650, isolationMode: 'all', showInferred: true, linkDistance: 180, repulsion: 1 };
 
 function isRecord(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -150,7 +150,7 @@ export class GraphRenderer {
     next.solidWidth = clamp(next.solidWidth, 2.2, 0.1, 6);
     next.dashedWidth = clamp(next.dashedWidth, 2.2, 0.1, 6);
     next.edgeLabelMode = ['light', 'active', 'always', 'off'].includes(next.edgeLabelMode) ? next.edgeLabelMode : 'light';
-    next.backgroundColor = /^#[0-9a-f]{6}$/i.test(next.backgroundColor) ? next.backgroundColor : '#0a1424';
+    next.backgroundColor = /^#[0-9a-f]{6}$/i.test(next.backgroundColor) ? next.backgroundColor : '#18191b';
     next.animationEnabled = next.animationEnabled !== false;
     next.animationSpeed = clamp(next.animationSpeed, 1, 0.25, 2);
     next.nodeLimit = clamp(next.nodeLimit, 650, 50, 650);
@@ -217,7 +217,7 @@ export class GraphRenderer {
       this.edgeObstacles = visibleNodes.map(node => ({ id: node.id, position: this.layout[node.id], geometry: getNodeGeometry(node, { nodeScale: this.view.nodeScale, labelScale: this.view.labelScale }) }));
     }
     this.svg.style.setProperty('--kg-motion-duration', `${Math.max(0.45, 3.2 / this.view.animationSpeed)}s`);
-    this.svg.style.backgroundColor = this.view.backgroundColor === '#0c1220' ? 'transparent' : this.view.backgroundColor;
+    this.svg.style.backgroundColor = this.view.backgroundColor === '#18191b' ? 'transparent' : this.view.backgroundColor;
     if (this.view.animationEnabled) this.svg.classList.remove('motion-paused');
     else this.svg.classList.add('motion-paused');
     this.edgeLayer.replaceChildren();
@@ -313,7 +313,7 @@ export class GraphRenderer {
         const top = Math.min(...bounds.map(b => b.top)) - 64;
         const bottom = Math.max(...bounds.map(b => b.bottom)) + 28;
         const color = getNodeColor(nodes[0]);
-        this.layerGuides.append(createSvg('rect', { x: left, y: top, width: right - left, height: bottom - top, rx: 14, fill: '#111b2d', 'fill-opacity': 0.92, stroke: color, 'stroke-opacity': 0.45, 'stroke-width': 1, 'vector-effect': 'non-scaling-stroke' }));
+        this.layerGuides.append(createSvg('rect', { x: left, y: top, width: right - left, height: bottom - top, rx: 14, fill: '#222426', 'fill-opacity': 0.92, stroke: color, 'stroke-opacity': 0.45, 'stroke-width': 1, 'vector-effect': 'non-scaling-stroke' }));
         const heading = createSvg('text', { x: left + 20, y: top + 30, fill: color, 'font-size': 18 * this.view.labelScale, 'font-family': 'system-ui,sans-serif', 'font-weight': 600 });
         heading.textContent = `${name} · ${nodes.length}`;
         heading.setAttribute('data-group-name', name);
@@ -433,7 +433,7 @@ export class GraphRenderer {
       d: pathData,
       class: `kg-edge${edge.inferred ? ' is-inferred' : ''}${active ? ' is-active' : ''}`,
       fill: 'none',
-      stroke: edge.inferred ? '#d6ad55' : '#a8f0d2',
+      stroke: edge.inferred ? '#c1a778' : '#a1b8ab',
       'stroke-width': active ? Math.max(2.2, edge.inferred ? this.view.dashedWidth : this.view.solidWidth) : (edge.inferred ? this.view.dashedWidth : this.view.solidWidth),
       'stroke-opacity': active ? Math.max(0.72, this.view.edgeOpacity) : (edge.inferred ? (this.view.inferredOpacity ?? this.view.edgeOpacity) : this.view.edgeOpacity),
       'stroke-dasharray': edge.inferred ? '6 5' : undefined,
@@ -521,15 +521,15 @@ export class GraphRenderer {
       group.append(createSvg('rect', { x: -width / 2, y: -height / 2, width, height, rx: 10 * this.view.nodeScale, fill: color, stroke: color, class: 'kg-node-shape' }));
       group.append(createSvg('rect', { x: -width / 2 + 1, y: -height / 2 + 10, width: 3, height: height - 20, rx: 1.5, fill: color }));
     } else {
-      group.append(createSvg('circle', { r: radius, fill: color, stroke: '#c9d4e8', class: 'kg-node-shape' }));
+      group.append(createSvg('circle', { r: radius, fill: color, stroke: '#ced1d5', class: 'kg-node-shape' }));
     }
     const label = createSvg('text', { x: 0, y: boxLike ? -3 * this.view.nodeScale : -radius - 12, class: `kg-node-label${boxLike ? '' : ' kg-dot-label'}`, 'text-anchor': 'middle', 'font-size': `${fontSize}px` });
-    if (boxLike) label.style.fill = '#0c1424';
+    if (boxLike) label.style.fill = '#181b1e';
     label.textContent = geometry.title;
     group.append(label);
     if (boxLike) {
       const kind = createSvg('text', { x: 0, y: 15 * this.view.nodeScale, class: 'kg-node-kind', 'text-anchor': 'middle', 'font-size': `${10 * this.view.nodeScale}px` });
-      kind.style.fill = '#172237';
+      kind.style.fill = '#25292d';
       kind.textContent = geometry.subtitle;
       group.append(kind);
     }
@@ -763,7 +763,7 @@ export class GraphRenderer {
     clone.setAttribute('width', this.getSize().width);
     clone.setAttribute('height', this.getSize().height);
     const style = createSvg('style');
-    style.textContent = '.kg-edge{fill:none}.kg-edge.is-inferred{stroke-dasharray:6 5}.kg-node-shape{stroke-width:1.2px}.kg-node-label,.kg-node-kind,.kg-edge-label{font-family:system-ui,sans-serif}.kg-node-label{fill:#ecf1fb;font-weight:600}.kg-node-kind{fill:#a4b2c9}.kg-dot-label,.kg-edge-label{paint-order:stroke;stroke:#0c1220;stroke-width:4px;stroke-linejoin:round}.kg-edge-label{fill:#bcc9dd}.kg-node-warning{fill:#f5b6a7}';
+    style.textContent = '.kg-edge{fill:none}.kg-edge.is-inferred{stroke-dasharray:6 5}.kg-node-shape{stroke-width:1.2px}.kg-node-label,.kg-node-kind,.kg-edge-label{font-family:system-ui,sans-serif}.kg-node-label{fill:#ececed;font-weight:600}.kg-node-kind{fill:#afb3b8}.kg-dot-label,.kg-edge-label{paint-order:stroke;stroke:#18191b;stroke-width:4px;stroke-linejoin:round}.kg-edge-label{fill:#c1c4c9}.kg-node-warning{fill:#f5b6a7}';
     clone.insertBefore(createSvg('rect', { x: 0, y: 0, width: '100%', height: '100%', fill: this.view.backgroundColor }), clone.firstChild);
     clone.insertBefore(style, clone.firstChild);
     return new XMLSerializer().serializeToString(clone);
