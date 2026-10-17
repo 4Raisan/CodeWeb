@@ -74,7 +74,7 @@ const defaultViewSettings = Object.freeze({
   showSolid: true,
   edgeDisplay: 'all',
   edgeLabelMode: 'off',
-  backgroundColor: '#18191b',
+  backgroundColor: '#0c1220',
   animationEnabled: true,
   animationSpeed: 1,
   nodeLimit: 650,
@@ -231,7 +231,7 @@ function normalizeSavedView(saved, document) {
     dottedOpacity: 0.85,
     edgeOpacity: saved.appearanceVersion === 3 ? settingNumber(saved.edgeOpacity, defaultViewSettings.edgeOpacity, 0, 1) : 0.85,
     edgeLabelMode: saved.edgeLabelMode === 'light' ? 'active' : ['active', 'always', 'off'].includes(saved.edgeLabelMode) ? saved.edgeLabelMode : defaultViewSettings.edgeLabelMode,
-    backgroundColor: saved.appearanceVersion === 3 ? settingColor(saved.backgroundColor, defaultViewSettings.backgroundColor) : '#18191b',
+    backgroundColor: saved.appearanceVersion === 3 ? settingColor(saved.backgroundColor, defaultViewSettings.backgroundColor) : '#0c1220',
     animationEnabled: settingBoolean(saved.animationEnabled, defaultViewSettings.animationEnabled),
     animationSpeed: settingNumber(saved.animationSpeed, defaultViewSettings.animationSpeed, 0.25, 2),
     nodeLimit: settingNumber(saved.nodeLimit, 650, 50, 650),
@@ -637,7 +637,7 @@ function addBadge(parent, text, color) {
     badge.style.backgroundColor = color;
     const hex = color.replace('#', '');
     const channels = hex.length === 6 ? [0, 2, 4].map(offset => parseInt(hex.slice(offset, offset + 2), 16)) : [255, 255, 255];
-    badge.style.color = channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722 > 140 ? '#181b1e' : '#ececed';
+    badge.style.color = channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722 > 140 ? '#0c1424' : '#e9eef8';
   }
   parent.append(badge);
 }
@@ -717,9 +717,9 @@ function renderInspector() {
     const heading = element('h2', 'inspector-title', 'Codebase overview');
     container.append(heading, element('p', 'muted', 'Select a node on the canvas or in the accessible list to inspect source, relationships, and extraction evidence.'));
     const metrics = element('div', 'overview-metrics');
-    addBadge(metrics, `${formatNumber(state.document.nodes.length)} nodes`, '#394958');
-    addBadge(metrics, `${formatNumber(state.document.edges.length)} edges`, '#354b48');
-    addBadge(metrics, `${formatNumber(state.document.diagnostics.length)} diagnostics`, '#4b4235');
+    addBadge(metrics, `${formatNumber(state.document.nodes.length)} nodes`, '#1d3557');
+    addBadge(metrics, `${formatNumber(state.document.edges.length)} edges`, '#173b45');
+    addBadge(metrics, `${formatNumber(state.document.diagnostics.length)} diagnostics`, '#3c2d1d');
     container.append(metrics);
     const source = element('p', 'source-line', `${state.document.repository.name} · ${state.document.repository.revision}`);
     container.append(source);
@@ -740,7 +740,7 @@ function renderInspector() {
   const badges = element('div', 'badge-row');
   const typeNames = { module: 'Code file', file: 'Code file', route: 'Endpoint', 'api-call': 'API call', model: 'Data model', external: 'Dependency', configuration: 'Configuration', schema: 'Schema' };
   addBadge(badges, typeNames[selected.kind] ?? getNodeKindLabel(selected), color);
-  addBadge(badges, `${(indexes.degree.get(selected.id) ?? 0)} connections`, '#3b424a');
+  addBadge(badges, `${(indexes.degree.get(selected.id) ?? 0)} connections`, '#26364d');
   container.append(badges);
   const revision = selected.source?.revision && !['browser-import', 'sample'].includes(selected.source.revision) ? ` · rev ${selected.source.revision}` : '';
   const source = element('p', 'source-line', `${sourceLine(selected)}${revision}`);
@@ -841,7 +841,7 @@ function updateSettingsControls() {
   dom.backgroundColor.value = state.view.backgroundColor;
   document.getElementById('theme-custom').value = state.view.backgroundColor;
   let presetTheme = false;
-  for (const [id, color] of [['theme-night', '#18191b'], ['theme-slate', '#303236'], ['theme-black', '#101112']]) {
+  for (const [id, color] of [['theme-night', '#0c1220'], ['theme-slate', '#202936'], ['theme-black', '#080a0e']]) {
     const active = state.view.backgroundColor === color;
     document.getElementById(id).setAttribute('aria-pressed', String(active));
     presetTheme ||= active;
@@ -1271,7 +1271,7 @@ function setupControls() {
     syncView();
     requestAnimationFrame(() => renderer.fit());
   });
-  for (const [id, color] of [['theme-night', '#18191b'], ['theme-slate', '#303236'], ['theme-black', '#101112']]) {
+  for (const [id, color] of [['theme-night', '#0c1220'], ['theme-slate', '#202936'], ['theme-black', '#080a0e']]) {
     document.getElementById(id).addEventListener('click', () => { state.view.backgroundColor = color; syncView(); });
   }
   document.getElementById('theme-custom').addEventListener('input', event => {

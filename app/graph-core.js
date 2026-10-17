@@ -4,15 +4,15 @@ export const MAX_EDGES = 30000;
 export const DEFAULT_VISIBLE_NODE_LIMIT = 650;
 
 export const DEFAULT_COLORS = Object.freeze({
-  code: '#8da9c4',
-  ui: '#8da9c4',
-  route: '#91b3a3',
-  data: '#c4aa7e',
-  test: '#8fb3b6',
-  docs: '#c9b98f',
-  config: '#b1a2bf',
+  code: '#4f8cff',
+  ui: '#4f8cff',
+  route: '#52c8ab',
+  data: '#e6a84a',
+  test: '#32b8c6',
+  docs: '#f3c969',
+  config: '#a77bf3',
   external: '#94a3b8',
-  unresolved: '#cb9691',
+  unresolved: '#f97373',
   other: '#8b9bb4'
 });
 
@@ -823,15 +823,15 @@ export function getBounds(positions) {
 
 export function getNodeColor(node) {
   const layerColors = {
-    Data: '#c8b181',
-    'Auth & middleware': '#cb9691',
-    Services: '#93b4bc',
+    Data: '#f5c451',
+    'Auth & middleware': '#ff766f',
+    Services: '#53d7ed',
     'Routes & entrypoints': '#e2e8f0',
-    Endpoints: '#9cb59b',
-    'API calls': '#bd9cac',
-    UI: '#8da9c4',
+    Endpoints: '#70df92',
+    'API calls': '#f48dc5',
+    UI: '#719dff',
     'Other files': '#9da9b9',
-    Dependencies: '#b1a2bf'
+    Dependencies: '#b692f6'
   };
   return node ? layerColors[getArchitectureLayer(node)] ?? '#9da9b9' : '#9da9b9';
 }
