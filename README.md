@@ -6,6 +6,8 @@ Turn a source folder into an interactive map of files, dependencies, routes, and
 
 ## Get started
 
+[Open CodeWeb in your browser](https://4raisan.github.io/CodeWeb/), or download a copy for offline use.
+
 1. Download **CodeWeb.html** from [Releases](https://github.com/4Raisan/CodeWeb/releases/latest).
 2. Open it in your browser.
 3. Choose **Open project → Project folder**, drop files, or open a graph JSON export.
