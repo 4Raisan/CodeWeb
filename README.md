@@ -14,6 +14,8 @@ Turn a source folder into an interactive map of files, dependencies, routes, and
 
 One HTML file. No installation. Local folder access requires your selection or drop; imported source code is never executed.
 
+**Try a sample:** Download the [sample graph JSON](https://raw.githubusercontent.com/4Raisan/CodeWeb/main/docs/sample-graph.json), then select **Open project → JSON file** in CodeWeb.
+
 ## Explore and save
 
 - Search for files, endpoints, and models. Select a node to see its connections and evidence.

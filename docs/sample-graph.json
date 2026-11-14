@@ -1,0 +1,269 @@
+{
+  "schemaVersion": "codeweb/1",
+  "name": "Example codebase graph",
+  "repository": {
+    "name": "Example project",
+    "revision": "sample"
+  },
+  "generatedAt": null,
+  "extractor": {
+    "name": "codeweb-sample",
+    "version": "1.0.0",
+    "mode": "sample"
+  },
+  "coverage": {
+    "filesScanned": 8,
+    "maxInitialNodes": 650
+  },
+  "diagnostics": [],
+  "nodes": [
+    {
+      "id": "file:README.md",
+      "kind": "documentation",
+      "label": "README.md",
+      "group": "docs",
+      "source": {
+        "path": "README.md",
+        "revision": "sample"
+      },
+      "metadata": {
+        "language": "Markdown"
+      },
+      "file": "README.md"
+    },
+    {
+      "id": "file:src/app.ts",
+      "kind": "file",
+      "label": "src/app.ts",
+      "group": "entrypoint",
+      "source": {
+        "path": "src/app.ts",
+        "revision": "sample"
+      },
+      "metadata": {
+        "language": "TypeScript"
+      },
+      "file": "src/app.ts"
+    },
+    {
+      "id": "file:src/db/schema.prisma",
+      "kind": "schema",
+      "label": "src/db/schema.prisma",
+      "group": "data",
+      "source": {
+        "path": "src/db/schema.prisma",
+        "revision": "sample"
+      },
+      "metadata": {
+        "language": "Prisma"
+      },
+      "file": "src/db/schema.prisma"
+    },
+    {
+      "id": "file:src/routes/users.ts",
+      "kind": "file",
+      "label": "src/routes/users.ts",
+      "group": "route",
+      "source": {
+        "path": "src/routes/users.ts",
+        "revision": "sample"
+      },
+      "metadata": {
+        "language": "TypeScript"
+      },
+      "file": "src/routes/users.ts"
+    },
+    {
+      "id": "file:src/services/user-service.ts",
+      "kind": "file",
+      "label": "src/services/user-service.ts",
+      "group": "service",
+      "source": {
+        "path": "src/services/user-service.ts",
+        "revision": "sample"
+      },
+      "metadata": {
+        "language": "TypeScript"
+      },
+      "file": "src/services/user-service.ts"
+    },
+    {
+      "id": "file:tests/user.test.ts",
+      "kind": "test",
+      "label": "tests/user.test.ts",
+      "group": "test",
+      "source": {
+        "path": "tests/user.test.ts",
+        "revision": "sample"
+      },
+      "metadata": {
+        "language": "TypeScript"
+      },
+      "file": "tests/user.test.ts"
+    },
+    {
+      "id": "model:User",
+      "kind": "model",
+      "label": "User",
+      "group": "data",
+      "source": {
+        "path": "src/db/schema.prisma",
+        "revision": "sample"
+      },
+      "metadata": {
+        "language": "Prisma"
+      },
+      "file": "src/db/schema.prisma"
+    },
+    {
+      "id": "route:GET_/users",
+      "kind": "route",
+      "label": "GET /users",
+      "group": "route",
+      "source": {
+        "path": "src/routes/users.ts",
+        "revision": "sample"
+      },
+      "metadata": {
+        "method": "GET",
+        "path": "/users"
+      },
+      "file": "src/routes/users.ts"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:DEFINES:file:src/db/schema.prisma:model:User:4",
+      "source": "file:src/db/schema.prisma",
+      "target": "model:User",
+      "kind": "DEFINES",
+      "label": "defines",
+      "evidence": {
+        "path": "src/db/schema.prisma",
+        "extractor": "sample",
+        "revision": "sample",
+        "startLine": 3,
+        "endLine": 12
+      },
+      "inferred": false,
+      "metadata": {}
+    },
+    {
+      "id": "edge:DOCUMENTS:file:README.md:file:src/app.ts:6",
+      "source": "file:README.md",
+      "target": "file:src/app.ts",
+      "kind": "DOCUMENTS",
+      "label": "documents",
+      "evidence": {
+        "path": "README.md",
+        "extractor": "sample",
+        "revision": "sample",
+        "startLine": 1,
+        "endLine": 1
+      },
+      "inferred": false,
+      "metadata": {}
+    },
+    {
+      "id": "edge:EXPOSES:file:src/routes/users.ts:route:GET_/users:1",
+      "source": "file:src/routes/users.ts",
+      "target": "route:GET_/users",
+      "kind": "EXPOSES",
+      "label": "exposes",
+      "evidence": {
+        "path": "src/routes/users.ts",
+        "extractor": "sample",
+        "revision": "sample",
+        "startLine": 4,
+        "endLine": 4
+      },
+      "inferred": false,
+      "metadata": {}
+    },
+    {
+      "id": "edge:IMPORTS:file:src/app.ts:file:src/routes/users.ts:0",
+      "source": "file:src/app.ts",
+      "target": "file:src/routes/users.ts",
+      "kind": "IMPORTS",
+      "label": "imports",
+      "evidence": {
+        "path": "src/app.ts",
+        "extractor": "sample",
+        "revision": "sample",
+        "startLine": 1,
+        "endLine": 1
+      },
+      "inferred": false,
+      "metadata": {}
+    },
+    {
+      "id": "edge:IMPORTS:file:src/routes/users.ts:file:src/services/user-service.ts:2",
+      "source": "file:src/routes/users.ts",
+      "target": "file:src/services/user-service.ts",
+      "kind": "IMPORTS",
+      "label": "imports",
+      "evidence": {
+        "path": "src/routes/users.ts",
+        "extractor": "sample",
+        "revision": "sample",
+        "startLine": 2,
+        "endLine": 2
+      },
+      "inferred": false,
+      "metadata": {}
+    },
+    {
+      "id": "edge:IMPORTS:file:tests/user.test.ts:file:src/services/user-service.ts:5",
+      "source": "file:tests/user.test.ts",
+      "target": "file:src/services/user-service.ts",
+      "kind": "IMPORTS",
+      "label": "tests",
+      "evidence": {
+        "path": "tests/user.test.ts",
+        "extractor": "sample",
+        "revision": "sample",
+        "startLine": 2,
+        "endLine": 2
+      },
+      "inferred": false,
+      "metadata": {}
+    },
+    {
+      "id": "edge:QUERIES:file:src/services/user-service.ts:model:User:3",
+      "source": "file:src/services/user-service.ts",
+      "target": "model:User",
+      "kind": "QUERIES",
+      "label": "queries",
+      "evidence": {
+        "path": "src/services/user-service.ts",
+        "extractor": "sample",
+        "revision": "sample",
+        "startLine": 7,
+        "endLine": 7
+      },
+      "inferred": false,
+      "metadata": {}
+    }
+  ],
+  "positions": {},
+  "stats": {
+    "totalNodes": 8,
+    "totalEdges": 7,
+    "nodesByKind": {
+      "file": 3,
+      "route": 1,
+      "schema": 1,
+      "model": 1,
+      "test": 1,
+      "documentation": 1
+    },
+    "edgesByKind": {
+      "IMPORTS": 3,
+      "EXPOSES": 1,
+      "QUERIES": 1,
+      "DEFINES": 1,
+      "DOCUMENTS": 1
+    }
+  },
+  "fingerprint": "kg-68c2c1f5"
+}
