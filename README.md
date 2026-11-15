@@ -1,11 +1,5 @@
-<h1 align="center">CodeWeb</h1>
-
 <p align="center">
   <img src="docs/assets/codeweb-brand.svg" width="570" alt="CodeWeb — See how your code fits together.">
-</p>
-
-<p align="center">
-  <a href="https://github.com/4Raisan/CodeWeb/actions/workflows/validate.yml"><img src="https://github.com/4Raisan/CodeWeb/actions/workflows/validate.yml/badge.svg?branch=main" alt="Validate CodeWeb"></a>
 </p>
 
 Turn a source folder into an interactive map of files, dependencies, routes, and data models. Explore connections and inspect the source evidence behind them, all in your browser.
@@ -50,4 +44,4 @@ npm --prefix app test
 npm --prefix app run build:standalone
 ```
 
-Open the development preview at `http://127.0.0.1:8000`. Edit `app/`, then rebuild `release/CodeWeb.html`. [Contribution guide](CONTRIBUTING.md) · [Security](SECURITY.md) · [MIT license](LICENSE)
+Open the development preview at `http://127.0.0.1:8000`. Edit `app/`, then rebuild `release/CodeWeb.html`. [Validation workflow](https://github.com/4Raisan/CodeWeb/actions/workflows/validate.yml) · [Contribution guide](CONTRIBUTING.md) · [Security](SECURITY.md) · [MIT license](LICENSE)
