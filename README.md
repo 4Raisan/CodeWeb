@@ -1,6 +1,12 @@
-# CodeWeb
+<h1 align="center">CodeWeb</h1>
 
-![CodeWeb — See how your code fits together.](docs/assets/codeweb-brand.svg)
+<p align="center">
+  <img src="docs/assets/codeweb-brand.svg" width="570" alt="CodeWeb — See how your code fits together.">
+</p>
+
+<p align="center">
+  <a href="https://github.com/4Raisan/CodeWeb/actions/workflows/validate.yml"><img src="https://github.com/4Raisan/CodeWeb/actions/workflows/validate.yml/badge.svg?branch=main" alt="Validate CodeWeb"></a>
+</p>
 
 Turn a source folder into an interactive map of files, dependencies, routes, and data models. Explore connections and inspect the source evidence behind them, all in your browser.
 
